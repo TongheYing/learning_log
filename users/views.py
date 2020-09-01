@@ -19,11 +19,11 @@ def register(request):
         # show empty register table
         form = UserCreationForm()
     else:
-        # cope with finished table
+        # cope with finished table, log in
         form = UserCreationForm(data=request.POST)
         if form.is_valid():
             new_user = form.save()
-            # let users log in automately and redirect to main page
+            # let users log in automatically and redirect to main page
             authenticated_user = authenticate(username=new_user.username,
                                               password=request.POST['password1'])
             login(request, authenticated_user)
